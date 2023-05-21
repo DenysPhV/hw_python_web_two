@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "hw-python-web-two"
+version = "0.1.0"
+description = ""
+authors = ["Denys Filichkin <denys.philichkin@gmail.com>"]
+readme = "README.md"
+packages = [{include = "hw_python_web_two"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+termcolor = "^2.3.0"
+colorama = "^0.4.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
