@@ -1,11 +1,11 @@
 from __future__ import annotations
-from abc import ABC, ABCMeta, abstractmethod
+from abc import ABC, abstractmethod
 
-import tkinter as tk
+
 from pathlib import Path
 import os
 import pickle
-import json
+
 import re
 import time
 import shutil
@@ -14,11 +14,11 @@ from datetime import date
 from termcolor import colored
 import colorama
 
-# from flask import Flask
+from flask import Flask
 
 from hw_python_web_two.notes import CLINotes
 
-# main = Flask(__name__)
+main = Flask(__name__)
 
 colorama.init()
 
@@ -852,6 +852,7 @@ RESPONSE = {
 }
 
 
+
 def main():
     while True:
         line = input(">> ").lower()
@@ -888,7 +889,7 @@ def start():
             f">> address book {ADRESSBOOK} was not found", "red")
         print(out_address_book_not)
 
-    main()
+    main.run(debug=True)
 
 
 if __name__ == "__main__":
