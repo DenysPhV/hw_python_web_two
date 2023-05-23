@@ -1,7 +1,6 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 
-
 from pathlib import Path
 import os
 import pickle
@@ -16,7 +15,7 @@ import colorama
 
 from flask import Flask
 
-from hw_python_web_two.notes import CLINotes
+# from hw_python_web_two.notes import CLINotes
 
 main = Flask(__name__)
 
@@ -48,13 +47,11 @@ class AddressBook(UserDict, Message):
     # add abstract class
     def save_to_file(self, filename):
         with open(filename, "wb") as fh:
-            pickle.dump(self, fh)
-
+            return pickle.dump(self, fh)
 
     def read_from_file(self, filename):
         with open(filename, "rb") as fh:
-            read = pickle.load(fh)
-        return read
+            return pickle.load(fh)
 
     def iterator(self, n=1):  # n indicates number of record to take for each iteration
         recorded = 0
@@ -808,12 +805,12 @@ def birthday(list):  # list contains lists of possible actions to add
     return "birthday have: " + output
 
 
-def start_notes(list=[]):  # list contains lists of possible actions to add
-    print(">> do you want to start working with notes ?[y/n]")
-    reponse = input(">> ").lower()
-    if reponse == "y":
-        CLINotes.run_notes()
-    return "continue with address book again"
+# def start_notes(list=[]):  # list contains lists of possible actions to add
+#     print(">> do you want to start working with notes ?[y/n]")
+#     reponse = input(">> ").lower()
+#     if reponse == "y":
+#         CLINotes.run_notes()
+#     return "continue with address book again"
 
 
 def command_parser(line):
@@ -833,7 +830,7 @@ PARSER = {
     RMV_CMD: lambda x: re.findall(RMV_CMD + "[ ]*[a-zA-Z0-9\+\-()]*", x),
     CONGRAT_CMD: lambda x: re.findall(
         CONGRAT_CMD + "[ ]*[a-zA-Z0-9\+\-()]*", x),
-    NOTES_CMD: lambda x: re.findall(NOTES_CMD, x)
+    # NOTES_CMD: lambda x: re.findall(NOTES_CMD, x)
 }
 
 RESPONSE = {
@@ -848,9 +845,8 @@ RESPONSE = {
     EDT_CMD: edit,
     RMV_CMD: remove,
     CONGRAT_CMD: birthday,
-    NOTES_CMD: start_notes
+    # NOTES_CMD: start_notes
 }
-
 
 
 def main():
@@ -876,11 +872,10 @@ def main():
                     print(">> " + str(handler(command_list)))
 
 
-# @main.route('/')
 def start():
     contact_book = AddressBook()  # address book of contacts
-    if (os.path.exists(ADRESSBOOK)):
-        contact_book = contact_book.read_from_file(ADRESSBOOK)
+    if os.path.exists(ADRESSBOOK):
+        contact_book.read_from_file(ADRESSBOOK)
         print(colored(">> address book was successfully read", "yellow"))
         # contact_book.print()
 
@@ -889,7 +884,7 @@ def start():
             f">> address book {ADRESSBOOK} was not found", "red")
         print(out_address_book_not)
 
-    main.run(debug=True)
+    main.run()
 
 
 if __name__ == "__main__":
