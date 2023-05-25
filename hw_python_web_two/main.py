@@ -21,7 +21,7 @@ main = Flask(__name__)
 
 colorama.init()
 
-dir_path = os.path.dirname(__file__)
+dir_path = "hw_python_web_two"
 
 
 class Message(ABC):
@@ -31,7 +31,7 @@ class Message(ABC):
 
 
 NOT_DEFINED = "not defined"
-ADRESSBOOK = "book.bin"
+ADRESSBOOK = "hw_python_web_two/book.bin"
 TELEPHONE = r"[+]380[(][0-9]{2}[)][0-9]{3}[-][0-9]{2}[-][0-9]{2} | [+]380[(][0-9]{2}[)][0-9]{3}[-][0-9]{1}[-][0-9]{3}"
 
 
@@ -350,11 +350,11 @@ EDT_CMD = "edit"
 RMV_CMD = "remove"
 EMAIL_CMD = "email"
 CONGRAT_CMD = "birthday"
-NOTES_CMD = "notes"
+# NOTES_CMD = "notes"
 
 COMMANDS = [HELLO_CMD, ADD_CMD, CHANGE_CMD,
             PHONE_CMD, SHOW_CMD, HLP_CMD, SRCH_CMD,
-            EDT_CMD, RMV_CMD, EMAIL_CMD, CONGRAT_CMD, NOTES_CMD]
+            EDT_CMD, RMV_CMD, EMAIL_CMD, CONGRAT_CMD]
 
 
 def parser(line):
@@ -884,7 +884,7 @@ def start():
             f">> address book {ADRESSBOOK} was not found", "red")
         print(out_address_book_not)
 
-    main.run()
+    main()
 
 
 if __name__ == "__main__":
